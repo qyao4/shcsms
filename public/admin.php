@@ -1,12 +1,14 @@
 <?php
     /*******w******** 
-    
     Name: Qiang Yao
     Date: 2023-11-07
     Description: vehicle list page(non-administrative)
-
     ****************/
-    $need_authenticated = false; //non-administrative
+
+    // Authenticate
+    $need_authenticated = true; 
+    require('authenticate.php');
+
     // Get category options
     require('category_getter.php');
     // var_dump(CATEGORY_OPTIONS);
@@ -17,12 +19,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <script language="javascript" src="index.js"></script>
+    <script language="javascript" src="admin.js"></script>
     <script language="javascript" src="tools/makemodel.js"></script>
     <title>Welcome to SHCSMS</title>
 </head>
-<body>
+<body class="green-theme">
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">SHCSMS</a>
@@ -33,18 +36,18 @@
         -->
         <div class="navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <!-- <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="new.php">CreateNew <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li> -->
-                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+                <!-- <li class="nav-item">
                     <a id="navAdmin" class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Sign in</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
@@ -84,15 +87,15 @@
       <table class="table table-striped table-bordered table-hover" id="searchResults">
         <thead>
             <tr>
-                <th id='make'>Make</th>
-                <th id='model'>Model</th>
-                <th id='category_name'>Category</th>
-                <th id='year'>Year</th>
-                <th id='price'>Price(CA$)</th>
-                <th id='mileage'>Mileage(km)</th>
-                <th id='exterior_color'>Color</th>
-                <th id='create_time'>Create_Time</th>
-                <th id='update_time'>Update_Time</th>
+                <th id='make'>Make<i class="fas fa-sort"></i></th>
+                <th id='model'>Model<i class="fas fa-sort"></i></th>
+                <th id='category_name'>Category<i class="fas fa-sort"></i></th>
+                <th id='year'>Year<i class="fas fa-sort"></i></th>
+                <th id='price'>Price(CA$)<i class="fas fa-sort"></i></th>
+                <th id='mileage'>Mileage(km)<i class="fas fa-sort"></i></th>
+                <th id='exterior_color'>Color<i class="fas fa-sort"></i></th>
+                <th id='create_time'>Create_Time<i class="fas fa-sort"></i></th>
+                <th id='update_time'>Update_Time<i class="fas fa-sort"></i></th>
                 <th></th>
             </tr>
         </thead>
@@ -127,7 +130,6 @@
             &copy; 2023 SHCSMS. All rights reserved.
         </div>
       </footer>
-
       <?php include('signin.php'); ?>
 </body>
 </html>

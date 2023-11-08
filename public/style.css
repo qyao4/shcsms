@@ -8,4 +8,90 @@
 ****************/
 
 @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+body {
+  /* background-color: #1c1d26; */
+  font-size: 14px;
+  font-family: 'Mooli', sans-serif;
+}
+
+/* #container{
+	box-sizing: border-box;
+	margin: 15px auto;
+	background-color: #ffffff;
+	width: 68%;
+	height:calc(100vh - 30px);
+	padding: 0 20px;
+	display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} */
+
+#navbarNav{
+  display: flex;
+  justify-content: end;
+}
+
+#navAdmin:hover{
+  color: rgba(255,255,255);
+}
+
+/* Adjust font size for the table */
+.table {
+  font-size: 0.8rem; /* Adjust the size as needed */
+}
+
+/* Add background color to table header */
+.table thead th {
+  background-color: #4e73df; /* Choose your color */
+  color: white;
+}
+
+.table thead th i{
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* Adjust hover background color */
+.table-hover tbody tr:hover {
+  background-color: #f8f9fc; /* Lighter color for hover state */
+}
+
+.table tr{
+  line-height: 1.1;
+}
+
+.table-edit{
+  cursor: pointer;
+}
+
+.green-theme .navbar,
+.green-theme .table thead th,
+.green-theme .btn-primary,
+.green-theme .footer {
+    background-color: #28a745; 
+}
+.green-theme .navbar-brand,
+.green-theme .nav-link,
+.green-theme .btn-primary {
+    color: #fff;
+}
+.green-theme .nav-link:hover {
+    color: #f8f9fc;
+}
+.green-theme .navbar {
+  background-color: #28a745 !important;
+}
+.green-theme .table thead th {
+  background-color: #218838;
+}
+
+.green-theme .btn-primary {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+.green-theme .footer {
+  background-color: rgba(40, 167, 69, 0.2); 
+}
 
