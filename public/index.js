@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   function handleRowLinkClick(vehicleData) {
       console.log(vehicleData);
+      window.location.href = `view.php?id=${vehicleData['vehicle_id']}`;
   }
 
 });

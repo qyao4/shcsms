@@ -28,10 +28,10 @@ body {
   justify-content: space-between;
 } */
 
-#navbarNav{
+/* #navbarNav{
   display: flex;
   justify-content: end;
-}
+} */
 
 #navAdmin:hover{
   color: rgba(255,255,255);
@@ -95,3 +95,12 @@ body {
   background-color: rgba(40, 167, 69, 0.2); 
 }
 
+@media (max-width: 991px) {
+  .navbar-collapse {
+      position: absolute;
+      background-color: #28a745;
+      top: 56px; 
+      right: 0;
+      z-index: 1000;
+  }
+}

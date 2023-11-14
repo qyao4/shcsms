@@ -55,7 +55,7 @@
 <body class="green-theme">
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">SHCSMS</a>
+        <a class="navbar-brand" href="admin.php">SHCSMS</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">

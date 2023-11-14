@@ -15,11 +15,17 @@
   if (isset($_POST['action']) && $_POST['action'] === 'search') {
     require __DIR__ . '/../src/search.php';
   }
-  if(isset($_POST['action']) && $_POST['action'] === 'process'){
+  else if(isset($_POST['action']) && $_POST['action'] === 'process'){
     require __DIR__ . '/../src/process.php';
   }
-  if(isset($_POST['action']) && $_POST['action'] === 'getVehicle'){
+  else if(isset($_POST['action']) && $_POST['action'] === 'getVehicle'){
     require __DIR__ . '/../src/getVehicle.php';
+  }
+  else if(isset($_POST['action']) && $_POST['action'] === 'categories'){
+    require __DIR__ . '/../src/editCategories.php';
+  }
+  else if(isset($_POST['action']) && $_POST['action'] === 'viewVehicle'){
+    require __DIR__ . '/../src/viewVehicle.php';
   }
 
 ?>

@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   });
 
-  function performSearch() {
+ function performSearch() {
     let formData = new FormData(searchForm);
     formData.append('action', 'search');
     formData.append('sortDirection',sortDirection);

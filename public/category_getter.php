@@ -9,7 +9,7 @@
   require __DIR__ . '/../src/connect.php';
   
   
-  if (!isset($_SESSION['categories']) ){
+  if (!isset($_SESSION['categories'])){
     $stmt = $db->prepare("SELECT category_id, category_name FROM vehiclecategories ORDER BY category_id");
     $stmt->execute();
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){

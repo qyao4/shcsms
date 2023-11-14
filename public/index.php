@@ -7,6 +7,13 @@
 
     ****************/
     $need_authenticated = false; //non-administrative
+    
+    if (session_status() == PHP_SESSION_NONE)
+        session_start();
+
+    if (isset($_SESSION['user_logged_in']) )
+        unset($_SESSION['user_logged_in']); 
+
     // Get category options
     require('category_getter.php');
     // var_dump(CATEGORY_OPTIONS);
@@ -26,12 +33,10 @@
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">SHCSMS</a>
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button> 
-        <div class="collapse navbar-collapse" id="navbarNav">
-        -->
-        <div class="navbar-collapse" id="navbarNav">
+        </button>        
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <!-- <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>

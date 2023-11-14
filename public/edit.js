@@ -38,16 +38,6 @@ document.addEventListener("DOMContentLoaded", function(){
           document.getElementById('makeSelect').value = data['data']['make'];
           populateModels(data['data']['make']);
           document.getElementById('modelSelect').value = data['data']['model'];
-
-          // let modelSelect = document.getElementById('modelSelect');
-          // let option = document.createElement('option');
-          // option.value = data['data']['model'];
-          // option.textContent = data['data']['model'];
-          // modelSelect.appendChild(option);
-          // document.getElementById('modelSelect').value = data['data']['model'];
-          // console.log('vehiclesData:',vehiclesData);
-          
-
           document.getElementById('category').value = data['data']['category_id'];
           document.getElementById('year').value = data['data']['year'];
           document.getElementById('price').value = data['data']['price'];
