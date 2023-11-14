@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function(){
           window.location.reload();
         }
         else{
-          alert('Creating New Data Failed!');
+          alert(data['message']);
         }
     })
     .catch((error) => {

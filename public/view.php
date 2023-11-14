@@ -122,7 +122,19 @@
                             <label for="contentText">Comment:</label>
                             <textarea class="form-control" id="contentText" name="content" rows="3" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit Comment</button>
+                        <!-- <img src="tools/captcha_script.php" alt="CAPTCHA">
+                        <button type="submit" class="btn btn-primary">Submit Comment</button> -->
+                        <div class="form-group row justify-content-end">
+                            <div class="col-auto">
+                                <img src="tools/captcha_script.php" alt="CAPTCHA" class="mb-3">
+                            </div>
+                            <div class="col-auto">
+                                <input type="text" name="captcha" class="form-control" placeholder="Enter CAPTCHA" required>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary">Submit Comment</button>
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
             </div>

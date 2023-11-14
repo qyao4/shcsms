@@ -40,19 +40,27 @@
         $response["data"] = ["baseinfo"=>$row, "commentinfo"=>$comments];
       }
       else if($command == 'Submit'){
-        $username = init_string('name') ?? 'Anonymous';
-        $content = init_string('content');
-        if(!empty(trim($content))){
-          $sql = "INSERT INTO comments (username,content,vehicle_id) VALUES (:username,:content,:vehicle_id)";
-          $statement = $db->prepare($sql);
-          $statement->bindValue(':username', $username);
-          $statement->bindValue(':content',$content);
-          $statement->bindValue(':vehicle_id',$vehicle_id);
-          $statement->execute();
+        session_start();
+        $captcha = init_string('captcha');
+        if($captcha==null || $_SESSION['captcha'] != $captcha){
+          $response['result'] = 'fail.';
+          $response['message'] = 'CAPTCHA is invalid.';
         }
         else{
-          $response['result'] = 'fail.';
-          $response['message'] = 'content is empty.';
+          $username = init_string('name') ?? 'Anonymous';
+          $content = init_string('content');
+          if(!empty(trim($content))){
+            $sql = "INSERT INTO comments (username,content,vehicle_id) VALUES (:username,:content,:vehicle_id)";
+            $statement = $db->prepare($sql);
+            $statement->bindValue(':username', $username);
+            $statement->bindValue(':content',$content);
+            $statement->bindValue(':vehicle_id',$vehicle_id);
+            $statement->execute();
+          }
+          else{
+            $response['result'] = 'fail.';
+            $response['message'] = 'content is empty.';
+          }
         }
       }
       else{
