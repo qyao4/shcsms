@@ -52,7 +52,12 @@
 
     <div id="container" class="container mt-5">
         <!-- Search Form -->
-        <form id="searchForm" class="mb-4">
+      <form id="searchForm" class="mb-4">
+          <div class="form-row mb-3">
+              <div class="col-md-9">
+                  <input type="text" class="form-control" id="keywordInput" name="keyword" placeholder="Search by make, model, category...">
+              </div>
+          </div>
           <div class="form-row">
               <div class="col">
                   <select class="custom-select" id="makeSelect" name="make">
@@ -103,7 +108,7 @@
       </table>
 
       <!-- Pagination -->
-      <nav aria-label="Page navigation example">
+      <nav aria-label="Page navigation example" id="paginationNav" style="display:none";>
         <ul class="pagination justify-content-center">
           <li class="page-item">
             <a id="prevPage" class="page-link" href="#" aria-label="Previous">
@@ -119,15 +124,23 @@
               <span aria-hidden="true">Next &raquo;</span>
             </a>
           </li>
+          <!-- Input for direct page navigation -->
+          <li class="page-item">
+            <input type="number" id="directPageInput" class="form-control" placeholder="Go to page" style="width: 110px;font-size: 0.9em;">
+          </li>
+          <li class="page-item">
+            <button id="goToPage" class="btn btn-primary">Go</button>
+          </li>
         </ul>
       </nav>
+    </div>
 
-      <!-- Footer -->
-      <footer class="bg-light text-center text-lg-start">
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            &copy; 2023 SHCSMS. All rights reserved.
-        </div>
-      </footer>
-      <?php include('signin.php'); ?>
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          &copy; 2023 SHCSMS. All rights reserved.
+      </div>
+    </footer>
+    <?php include('signin.php'); ?>
 </body>
 </html>

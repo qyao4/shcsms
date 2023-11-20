@@ -28,9 +28,10 @@
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT * FROM comments WHERE vehicle_id = :vehicle_id ORDER BY create_date DESC";
+        $sql = "SELECT * FROM comments WHERE vehicle_id = :vehicle_id and status = :status ORDER BY create_date DESC";
         $statement = $db->prepare($sql);
         $statement->bindValue(':vehicle_id',$vehicle_id);
+        $statement->bindValue(':status',"S");
         $statement->execute();
         $comments = [];
         while($comment = $statement->fetch(PDO::FETCH_ASSOC)){
@@ -43,8 +44,9 @@
         session_start();
         $captcha = init_string('captcha');
         if($captcha==null || $_SESSION['captcha'] != $captcha){
+          $scaptcha = $_SESSION['captcha'];
           $response['result'] = 'fail.';
-          $response['message'] = 'CAPTCHA is invalid.';
+          $response['message'] = "CAPTCHA is invalid.[{$scaptcha}]";
         }
         else{
           $username = init_string('name') ?? 'Anonymous';

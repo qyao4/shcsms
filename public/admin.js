@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", function(){
   const prevButton = document.getElementById("prevPage");
   const nextButton = document.getElementById("nextPage");
+  const goButton = document.getElementById("goToPage");
   const currentPageSpan = document.getElementById("currentPage");
   const totalPagesSpan = document.getElementById("totalPages");
   let currentPage = 1;
@@ -31,6 +32,19 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   });
 
+  goButton.addEventListener("click", function(){
+    let goPage = document.getElementById('directPageInput').value;
+    if(goPage < 1)
+      currentPage = 1;
+    else if(goPage > totalPages)
+      currentPage = totalPages;
+    else
+      currentPage = goPage;
+    document.getElementById('directPageInput').value = currentPage;
+    displayResults(currentData.slice((currentPage - 1) * recordsPerPage, currentPage * recordsPerPage));
+  })
+
+
  function performSearch() {
     let formData = new FormData(searchForm);
     formData.append('action', 'search');
@@ -48,6 +62,10 @@ document.addEventListener("DOMContentLoaded", function(){
         if(data['result'] == 'succ'){
           currentData = data.data;
           totalPages = Math.ceil(data.data.length / recordsPerPage);
+          if(totalPages > 1)
+            document.getElementById('paginationNav').style.display = 'block';
+          else
+          document.getElementById('paginationNav').style.display = 'none';
           displayResults(currentData.slice(0, recordsPerPage));
         }
         else{

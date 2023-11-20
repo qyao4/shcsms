@@ -27,5 +27,8 @@
   else if(isset($_POST['action']) && $_POST['action'] === 'viewVehicle'){
     require __DIR__ . '/../src/viewVehicle.php';
   }
+  else if(isset($_POST['action']) && $_POST['action'] === 'updateComment'){
+    require __DIR__ . '/../src/updateComment.php';
+  }
 
 ?>

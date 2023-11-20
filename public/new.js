@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
+  CKEDITOR.replace('description');
   const form = document.getElementById('newVehicleForm');
   
   form.addEventListener('submit', function(event) {

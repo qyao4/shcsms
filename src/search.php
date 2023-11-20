@@ -22,17 +22,26 @@
             FROM vehicles v 
             INNER JOIN vehiclecategories vc ON vc.category_id = v.category_id";
     
-    $keys = ['make','model','category_id'];
+    $keys = ['make','model','category_id','keyword'];
     $where_keys = [];
     $where_values = [];
     foreach($keys as $key){
       $val = init_string($key);
       if($val != null){
-        if($key == 'category_id')
+        if($key == 'category_id'){
           $where_keys[] = "v.$key = :$key";
-        else
+          $where_values[$key] = $val;
+        }
+        else if($key == 'keyword'){
+          $where_keys[] = "(v.make LIKE :makeKeyword OR v.model LIKE :modelKeyword OR vc.category_name LIKE :categoryNameKeyword)";
+          $where_values['makeKeyword'] = '%' . $val . '%';
+          $where_values['modelKeyword'] = '%' . $val . '%';
+          $where_values['categoryNameKeyword'] = '%' . $val . '%';
+        }
+        else{
           $where_keys[] = "$key = :$key";
-        $where_values[$key] = $val;
+          $where_values[$key] = $val;
+        }
       }
     }
     
@@ -41,7 +50,7 @@
 
     $sql = $sql . " ORDER BY {$sortField} {$sortDirection}";            
 
-    //echo $sql;
+    // echo $sql;
 
     $statement = $db->prepare($sql);
     $statement->execute($where_values);

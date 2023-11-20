@@ -20,6 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
     <script language="javascript" src="tools/makemodel.js"></script>
     
     
@@ -50,6 +51,39 @@
         border-top: none;
         }
         /* tabs css */
+
+        /* comments css*/
+        .comment-container {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .comment-content {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .comment-actions {
+            text-align: right;
+        }
+
+        .comment-actions button {
+            margin-left: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .comment-actions button:hover {
+            background-color: #0056b3;
+        }
+        /* comments css*/
     </style>
 </head>
 <body class="green-theme">
@@ -126,15 +160,17 @@
                         <label for="description">Description</label>
                         <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="Update">Update</button>
-                    <button type="submit" class="btn btn-primary" id="Delete">Delete</button>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary" id="Update">Update</button>
+                        <button type="submit" class="btn btn-primary" id="Delete">Delete</button>
+                    </div>
                 </form>
             </div>
 
             <!-- Comments Info Tab -->
             <div class="tab-pane fade" id="comments-info" role="tabpanel" aria-labelledby="comments-info-tab">
-                <div class="mt-3">
-                    <p>In building...</p>
+                <div class="mt-3" id="commentsContainer">
+                    
                 </div>
             </div>
         </div>
