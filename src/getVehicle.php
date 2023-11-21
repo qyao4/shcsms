@@ -8,34 +8,39 @@
   ];
 
   $vehicle_id = init_string('vehicle_id');
+  $slug = init_string('slug');
   
-  if($vehicle_id == null){
+  if($vehicle_id == null || $slug == null){
     $response["result"] = "fail";
     $response["message"] = "wrong param.";
   }
   else  {
     $sql = "SELECT *
             FROM vehicles  
-            WHERE vehicle_id = :vehicle_id";
+            WHERE vehicle_id = :vehicle_id AND slug=:slug ";
 
     $statement = $db->prepare($sql);
     $statement->bindValue(':vehicle_id',$vehicle_id);
+    $statement->bindValue(':slug',$slug);
     $statement->execute();
     $row = $statement->fetch(PDO::FETCH_ASSOC);
     
-    // $response["data"] = $row;
-
-    $sql = "SELECT * FROM comments WHERE vehicle_id = :vehicle_id and status IN (:status_s,:status_h) ORDER BY create_date DESC";
-    $statement = $db->prepare($sql);
-    $statement->bindValue(':vehicle_id',$vehicle_id);
-    $statement->bindValue(':status_s',"S");
-    $statement->bindValue(':status_h',"H");
-    $statement->execute();
-    $comments = [];
-    while($comment = $statement->fetch(PDO::FETCH_ASSOC)){
-      $comments[] = $comment;
+    if($row == false){
+      $response["result"] = "fail";
+      $response["message"] = "no vehicle found.";
     }
-    
+    else{
+      $sql = "SELECT * FROM comments WHERE vehicle_id = :vehicle_id AND status IN (:status_s,:status_h) ORDER BY create_date DESC";
+      $statement = $db->prepare($sql);
+      $statement->bindValue(':vehicle_id',$vehicle_id);
+      $statement->bindValue(':status_s',"S");
+      $statement->bindValue(':status_h',"H");
+      $statement->execute();
+      $comments = [];
+      while($comment = $statement->fetch(PDO::FETCH_ASSOC)){
+        $comments[] = $comment;
+      }
+    }
     $response["data"] = ["baseinfo"=>$row, "commentinfo"=>$comments];
   }
   $json = json_encode($response);

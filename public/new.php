@@ -126,6 +126,10 @@
                         <label for="description">Description</label>
                         <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="slug">Slug</label>
+                        <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter a slug for permalink" required autocomplete="off">
+                    </div>
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-primary" name="command" value="Create">Create</button>
                     </div>
@@ -135,7 +139,7 @@
             <!-- Comments Info Tab -->
             <div class="tab-pane fade" id="comments-info" role="tabpanel" aria-labelledby="comments-info-tab">
                 <div class="mt-3">
-                    <p>In building...</p>
+                    <p></p>
                 </div>
             </div>
         </div>

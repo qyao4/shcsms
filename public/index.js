@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function(){
           //     </td>
           // `;
           for (var key in vehicle) {
-            if (vehicle.hasOwnProperty(key) && key!='vehicle_id') {
+            if (vehicle.hasOwnProperty(key) && key != 'vehicle_id' && key != 'slug') {
               let cell = row.insertCell();
               let content = vehicle[key];
               cell.textContent = content;
@@ -103,7 +103,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
   function handleRowLinkClick(vehicleData) {
       console.log(vehicleData);
-      window.location.href = `view.php?id=${vehicleData['vehicle_id']}`;
+      // window.location.href = `view.php?id=${vehicleData['vehicle_id']}`;
+      let slugText = vehicleData['slug'];
+      window.location.href = `vehicles/${vehicleData['vehicle_id']}/${slugText}`;
   }
 
 });

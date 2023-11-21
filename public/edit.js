@@ -16,9 +16,14 @@ document.addEventListener("DOMContentLoaded", function(){
   })
 
   //Init data
-  const params = new URLSearchParams(window.location.search);
-  const vehicle_id = params.get('id');
-  if(!vehicle_id){
+  // const params = new URLSearchParams(window.location.search);
+  // const vehicle_id = params.get('id');
+  const pathParts = window.location.pathname.split('/');
+  const vehicle_id = pathParts[pathParts.length - 2];  
+  const slug = pathParts[pathParts.length - 1];
+  console.log('vehicle_id:',vehicle_id);
+  console.log('slug:',slug);
+  if(!vehicle_id || !slug){
     alert('Init data failed.');
     window.location.href = 'signin_processor.php';
   }
@@ -28,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function(){
   function initData(){
     let formData = new FormData(form);
     formData.append('vehicle_id',vehicle_id);
+    formData.append('slug',slug);
     formData.append('action', 'getVehicle');
     fetch('request.php', {
         method: 'POST',
@@ -46,15 +52,18 @@ document.addEventListener("DOMContentLoaded", function(){
           document.getElementById('mileage').value = data['data']['baseinfo']['mileage'];
           document.getElementById('exteriorColor').value = data['data']['baseinfo']['exterior_color'];
           document.getElementById('description').value = data['data']['baseinfo']['description'];
+          document.getElementById('slug').value = data['data']['baseinfo']['slug'];
 
           showComments(data['data']['commentinfo']);
         }
         else{
           alert('Init Data Failed!');
+          window.location.href = 'signin_processor.php';
         }
     })
     .catch((error) => {
         console.error('Error:', error);
+        window.location.href = 'signin_processor.php';
     });
   }  
 
@@ -168,6 +177,8 @@ document.addEventListener("DOMContentLoaded", function(){
         if(data['result'] == 'succ'){
           if(command == 'Update'){
             alert('Update Data Succeeded!');
+            let slugText = data['data']['slug'];
+            window.location.href = `edit/${vehicle_id}/${slugText}`;
           }
           else{
             alert('Delete Data Succeeded!');

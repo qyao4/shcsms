@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function(){
       data.forEach(vehicle => {
           const row = resultsBody.insertRow();
           for (var key in vehicle) {
-            if (vehicle.hasOwnProperty(key) && key!='vehicle_id') {
+            if (vehicle.hasOwnProperty(key) && key !='vehicle_id' && key != 'slug') {
               let cell = row.insertCell();
               let content = vehicle[key];
               cell.textContent = content;
@@ -109,7 +109,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
   function handleRowLinkClick(vehicleData) {
       console.log(vehicleData);
-      window.location.href = `edit.php?id=${vehicleData['vehicle_id']}`;
+      //window.location.href = `edit.php?id=${vehicleData['vehicle_id']}`;
+      let slugText = vehicleData['slug'];
+      window.location.href = `edit/${vehicleData['vehicle_id']}/${slugText}`;
   }
 
   document.querySelectorAll('th').forEach(function(header) {

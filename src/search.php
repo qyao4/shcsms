@@ -18,7 +18,7 @@
   }
   else{
     $sql = "SELECT v.make, v.model, vc.category_name, v.year, v.price, v.mileage, v.exterior_color, 
-              v.create_time, v.update_time,v.vehicle_id
+              v.create_time, v.update_time,v.slug,v.vehicle_id
             FROM vehicles v 
             INNER JOIN vehiclecategories vc ON vc.category_id = v.category_id";
     

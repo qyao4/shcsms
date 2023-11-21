@@ -8,9 +8,12 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 
   //Init data
-  const params = new URLSearchParams(window.location.search);
-  const vehicle_id = params.get('id');
-  if(!vehicle_id){
+  // const params = new URLSearchParams(window.location.search);
+  // const vehicle_id = params.get('id');
+  const pathParts = window.location.pathname.split('/');
+  const vehicle_id = pathParts[pathParts.length - 2];  
+  const slug = pathParts[pathParts.length - 1];
+  if(!vehicle_id || !slug){
     alert('Init data failed.');
     window.location.href = 'signin_processor.php';
   }
@@ -44,10 +47,12 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         else{
           alert('Init Data Failed!');
+          window.location.href = 'signin_processor.php';
         }
     })
     .catch((error) => {
         console.error('Error:', error);
+        window.location.href = 'signin_processor.php';
     });
   }
 

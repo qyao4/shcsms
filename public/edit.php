@@ -4,6 +4,8 @@
     Date: 2023-11-07
     Description: Create new vehicle (administrative)
     ****************/
+    $baseURL = "http://" . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['PHP_SELF']), '/\\') . "/";
+
     // Authenticate
     $need_authenticated = true; 
     require('authenticate.php');
@@ -16,6 +18,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="<?php echo $baseURL; ?>">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -159,6 +162,10 @@
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="slug">Slug</label>
+                        <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter a slug for permalink" required autocomplete="off">
                     </div>
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-primary" id="Update">Update</button>
