@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function(){
   // const params = new URLSearchParams(window.location.search);
   // const vehicle_id = params.get('id');
   const pathParts = window.location.pathname.split('/');
-  const vehicle_id = pathParts[pathParts.length - 2];  
-  const slug = pathParts[pathParts.length - 1];
+  const vehicle_id = pathParts[pathParts.length - 3];  
+  const slug = pathParts[pathParts.length - 2];
   console.log('vehicle_id:',vehicle_id);
   console.log('slug:',slug);
   if(!vehicle_id || !slug){
@@ -51,8 +51,22 @@ document.addEventListener("DOMContentLoaded", function(){
           document.getElementById('price').value = data['data']['baseinfo']['price'];
           document.getElementById('mileage').value = data['data']['baseinfo']['mileage'];
           document.getElementById('exteriorColor').value = data['data']['baseinfo']['exterior_color'];
-          document.getElementById('description').value = data['data']['baseinfo']['description'];
-          document.getElementById('slug').value = data['data']['baseinfo']['slug'];
+          // document.getElementById('description').value = data['data']['baseinfo']['description'];
+          // CKEDITOR.instances.description.setData(data['data']['baseinfo']['description']);
+          
+          if (CKEDITOR.instances.description) {
+            if (CKEDITOR.instances.description.status == 'ready') {
+              CKEDITOR.instances.description.setData(data['data']['baseinfo']['description']);
+              console.log('CKEDITOR ready.');
+            } else {
+                CKEDITOR.instances.description.on('instanceReady', function() {
+                  CKEDITOR.instances.description.setData(data['data']['baseinfo']['description']);
+                  console.log('CKEDITOR ready.');
+                });
+                console.error('CKEDITOR not ready.');
+            }
+        }
+        document.getElementById('slug').value = data['data']['baseinfo']['slug'];
 
           showComments(data['data']['commentinfo']);
         }

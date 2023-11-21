@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function(){
       console.log(vehicleData);
       //window.location.href = `edit.php?id=${vehicleData['vehicle_id']}`;
       let slugText = vehicleData['slug'];
-      window.location.href = `edit/${vehicleData['vehicle_id']}/${slugText}`;
+      window.location.href = `edit/${vehicleData['vehicle_id']}/${slugText}/`;
   }
 
   document.querySelectorAll('th').forEach(function(header) {

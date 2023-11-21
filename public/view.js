@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function(){
   // const params = new URLSearchParams(window.location.search);
   // const vehicle_id = params.get('id');
   const pathParts = window.location.pathname.split('/');
-  const vehicle_id = pathParts[pathParts.length - 2];  
-  const slug = pathParts[pathParts.length - 1];
+  const vehicle_id = pathParts[pathParts.length - 3];  
+  const slug = pathParts[pathParts.length - 2];
   if(!vehicle_id || !slug){
     alert('Init data failed.');
     window.location.href = 'signin_processor.php';

@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function(){
     formData.append('action', 'process');
     formData.append('command', 'Create');
 
+    let description = CKEDITOR.instances.description.getData();
+    formData.delete('description');
+    formData.append('description',description);
+
     fetch('request.php', {
         method: 'POST',
         body: formData

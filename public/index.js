@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function(){
       console.log(vehicleData);
       // window.location.href = `view.php?id=${vehicleData['vehicle_id']}`;
       let slugText = vehicleData['slug'];
-      window.location.href = `vehicles/${vehicleData['vehicle_id']}/${slugText}`;
+      window.location.href = `vehicles/${vehicleData['vehicle_id']}/${slugText}/`;
   }
 
 });
