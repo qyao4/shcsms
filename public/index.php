@@ -8,14 +8,18 @@
     ****************/
     $need_authenticated = false; //non-administrative
 
-   
-    
     if(isset($_GET['action']) && $_GET['action'] === 'logout'){
         if (session_status() == PHP_SESSION_NONE)
             session_start();
         if (isset($_SESSION['user_logged_in']) )
             unset($_SESSION['user_logged_in']); 
     }
+
+    $links = [
+        "signin"=>true,
+        "signup"=>true,
+        "logout"=>true,
+    ];
     
     // Get category options
     require('category_getter.php');
@@ -34,7 +38,7 @@
 </head>
 <body>
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">SHCSMS<?= isset($_SESSION['user_logged_in']) ? '-'.$_SESSION['user_logged_in'] : '' ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,7 +56,8 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
+    <?php include('header.php'); ?>
 
     <div id="container" class="container mt-5">
         <!-- Search Form -->
@@ -129,12 +134,13 @@
         </nav>
     </div>                       
       <!-- Footer -->
-      <footer class="bg-light text-center text-lg-start">
+      <!-- <footer class="bg-light text-center text-lg-start">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             &copy; 2023 SHCSMS. All rights reserved.
         </div>
-      </footer>
+      </footer> -->
 
-      <?php include('signin.php'); ?>
+    <?php include('footer.php'); ?>
+    <?php include('signin.php'); ?>
 </body>
 </html>
