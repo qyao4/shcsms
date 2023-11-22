@@ -20,11 +20,14 @@
       $stmt->bindValue("username", $username);
       $stmt->bindValue("password", $password);
       $stmt->execute();
-
-      if ($stmt->rowCount() > 0) {
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      if ($row) {
         $_SESSION['user_logged_in'] = $username;
         if(isset($_POST['type']) && $_POST['type'] == 'login'){
-          header("Location: admin.php");
+          if($row['permission'] == '9')
+            header("Location: admin.php");
+          else
+            header("location: index.php");
         }
         else{
           if(isset($_SERVER['HTTP_REFERER'])){

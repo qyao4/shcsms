@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(){
       // Loop through each vehicle in the data array
       data.forEach(vehicle => {
           const row = resultsBody.insertRow();
-          for (var key in vehicle) {
+          for (let key in vehicle) {
             if (vehicle.hasOwnProperty(key) && key !='vehicle_id' && key != 'slug') {
               let cell = row.insertCell();
               let content = vehicle[key];

@@ -13,8 +13,8 @@
     if (session_status() == PHP_SESSION_NONE)
         session_start();
 
-    if (isset($_SESSION['user_logged_in']) )
-        unset($_SESSION['user_logged_in']); 
+    // if (isset($_SESSION['user_logged_in']) )
+    //     unset($_SESSION['user_logged_in']); 
 
     // Get category options
     require('category_getter.php');

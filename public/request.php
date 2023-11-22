@@ -30,5 +30,14 @@
   else if(isset($_POST['action']) && $_POST['action'] === 'updateComment'){
     require __DIR__ . '/../src/updateComment.php';
   }
+  else if(isset($_POST['action']) && $_POST['action'] === 'getUsers'){
+    require __DIR__ . '/../src/getUsers.php';
+  }
+  else if(isset($_POST['action']) && $_POST['action'] === 'manageUsers'){
+    require __DIR__ . '/../src/manageUsers.php';
+  }
+  else if(isset($_POST['action']) && $_POST['action'] === 'register'){
+    require __DIR__ . '/../src/register.php';
+  }
 
 ?>

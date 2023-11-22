@@ -7,13 +7,16 @@
 
     ****************/
     $need_authenticated = false; //non-administrative
+
+   
     
-    if (session_status() == PHP_SESSION_NONE)
-        session_start();
-
-    if (isset($_SESSION['user_logged_in']) )
-        unset($_SESSION['user_logged_in']); 
-
+    if(isset($_GET['action']) && $_GET['action'] === 'logout'){
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
+        if (isset($_SESSION['user_logged_in']) )
+            unset($_SESSION['user_logged_in']); 
+    }
+    
     // Get category options
     require('category_getter.php');
     // var_dump(CATEGORY_OPTIONS);
@@ -32,23 +35,20 @@
 <body>
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">SHCSMS</a>
+        <a class="navbar-brand" href="#">SHCSMS<?= isset($_SESSION['user_logged_in']) ? '-'.$_SESSION['user_logged_in'] : '' ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>        
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
-                <!-- <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li> -->
                 <li class="nav-item">
                     <a id="navAdmin" class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Sign in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.php">Sign up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?action=logout">Logout</a>
                 </li>
             </ul>
         </div>
