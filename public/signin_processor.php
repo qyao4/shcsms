@@ -16,27 +16,32 @@
     $password = init_password();
 
     if($username!=null && $password!=null){
-      $stmt = $db->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+      // $stmt = $db->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+      $stmt = $db->prepare("SELECT * FROM users WHERE username = :username");
       $stmt->bindValue("username", $username);
-      $stmt->bindValue("password", $password);
+      // $stmt->bindValue("password", $password);
       $stmt->execute();
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      
       if ($row) {
-        $_SESSION['user_logged_in'] = $username;
-        $_SESSION['permission'] = $row['permission'];
-        if(isset($_POST['type']) && $_POST['type'] == 'login'){
-          if($row['permission'] == '9')
-            header("Location: admin.php");
-          else
-            header("location: index.php");
-        }
-        else{
-          if(isset($_SERVER['HTTP_REFERER'])){
-            $returnUrl = $_SERVER['HTTP_REFERER'];
-            header('Location: ' . $returnUrl);
+        $hashedPasswordFromDatabase = $row['password'];
+        if (password_verify($password, $hashedPasswordFromDatabase)) {
+          $_SESSION['user_logged_in'] = $username;
+          $_SESSION['permission'] = $row['permission'];
+          if(isset($_POST['type']) && $_POST['type'] == 'login'){
+            if($row['permission'] == '9')
+              header("Location: admin.php");
+            else
+              header("location: index.php");
           }
+          else{
+            if(isset($_SERVER['HTTP_REFERER'])){
+              $returnUrl = $_SERVER['HTTP_REFERER'];
+              header('Location: ' . $returnUrl);
+            }
+          }
+          exit;
         }
-        exit;
       }
     }
   }

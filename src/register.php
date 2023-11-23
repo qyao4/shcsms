@@ -21,7 +21,7 @@
       $sql = "INSERT INTO users (username,password,email) VALUES (:username,:password,:email)";
         $statement = $db->prepare($sql);
         $statement->bindValue(':username', $username);
-        $statement->bindValue(':password', $password);
+        $statement->bindValue(':password', password_hash($password, PASSWORD_DEFAULT));
         $statement->bindValue(':email', $email);
         if(!$statement->execute())
           setFail('update failed.');

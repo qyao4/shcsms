@@ -29,10 +29,11 @@
             setFail('update failed.');
         }
         else{
-          $sql = "INSERT INTO users (username,email) VALUES (:username,:email)";
+          $sql = "INSERT INTO users (username,email,password) VALUES (:username,:email,:password)";
           $statement = $db->prepare($sql);
           $statement->bindValue(':username', $username);
           $statement->bindValue(':email', $email);
+          $statement->bindValue(':password', password_hash('usercms', PASSWORD_DEFAULT));
           if(!$statement->execute())
             setFail('insert failed.');
         }

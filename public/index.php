@@ -26,6 +26,12 @@
     // Get category options
     require('category_getter.php');
     // var_dump(CATEGORY_OPTIONS);
+
+    // $password = 'webcms';
+    // $hashpassword = password_hash($password, PASSWORD_DEFAULT);
+    // echo $hashpassword;
+    // echo '<br>';
+    // echo password_verify($password,$hashpassword);
 ?>
 <!DOCTYPE html>
 <html lang="en">
