@@ -23,6 +23,7 @@
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
       if ($row) {
         $_SESSION['user_logged_in'] = $username;
+        $_SESSION['permission'] = $row['permission'];
         if(isset($_POST['type']) && $_POST['type'] == 'login'){
           if($row['permission'] == '9')
             header("Location: admin.php");

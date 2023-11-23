@@ -7,6 +7,7 @@
 
     ****************/
     // $links = [
+    //   "home"=>"index.php"    
     //   "signin"=>true,
     //   "signup"=>true,
     //   "logout"=>true,
@@ -14,7 +15,7 @@
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">SHCSMS<?= isset($_SESSION['user_logged_in']) ? '-'.$_SESSION['user_logged_in'] : '' ?></a>
+    <a class="navbar-brand" href="<?= isset($links['home']) ? $links['home'] : 'index.php'?>">SHCSMS<?= isset($_SESSION['user_logged_in']) ? '-'.$_SESSION['user_logged_in'] : '' ?></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>        
@@ -33,11 +34,30 @@
             </li>
             <?php endif ?>
 
+            <?php if(isset($links['new']) && $links['new']): ?>
+            <li class="nav-item active">
+                <a class="nav-link" href="new.php">CreateNew <span class="sr-only">(current)</span></a>
+            </li>
+            <?php endif ?>
+
+            <?php if(isset($links['categories']) && $links['categories']): ?>
+            <li class="nav-item">
+                <a class="nav-link" href="categories.php">Categories</a>
+            </li>
+            <?php endif ?>
+
+            <?php if(isset($links['users']) && $links['users']): ?>
+            <li class="nav-item">
+                <a class="nav-link" href="users.php">Users</a>
+            </li>
+            <?php endif ?>
+
             <?php if(isset($links['logout']) && $links['logout']): ?>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?action=logout">Logout</a>
             </li>
             <?php endif ?>
+
         </ul>
     </div>
 </nav>

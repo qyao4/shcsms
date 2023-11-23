@@ -7,18 +7,20 @@
 
     ****************/
     $need_authenticated = false; //non-administrative
+    if (session_status() == PHP_SESSION_NONE)
+        session_start();
 
     if(isset($_GET['action']) && $_GET['action'] === 'logout'){
-        if (session_status() == PHP_SESSION_NONE)
-            session_start();
-        if (isset($_SESSION['user_logged_in']) )
+        if (isset($_SESSION['user_logged_in']))
             unset($_SESSION['user_logged_in']); 
+        if(isset($_SESSION['permission']))
+            unset($_SESSION['permission']);
     }
 
     $links = [
-        "signin"=>true,
+        "signin"=>(!isset($_SESSION['user_logged_in'])),
         "signup"=>true,
-        "logout"=>true,
+        "logout"=>isset($_SESSION['user_logged_in']),
     ];
     
     // Get category options

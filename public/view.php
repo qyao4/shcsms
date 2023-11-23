@@ -13,8 +13,9 @@
     if (session_status() == PHP_SESSION_NONE)
         session_start();
 
-    // if (isset($_SESSION['user_logged_in']) )
-    //     unset($_SESSION['user_logged_in']); 
+    $links = [
+        "logout"=>isset($_SESSION['user_logged_in']),
+    ]; 
 
     // Get category options
     require('category_getter.php');
@@ -33,28 +34,7 @@
 </head>
 <body>
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="index.php">SHCSMS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>        
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <!-- <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li> -->
-                <li class="nav-item">
-                    <a id="navAdmin" class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Sign in</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php include('header.php'); ?>
 
     <div id="container" class="container mt-5">
         <!-- image area -->
@@ -145,12 +125,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light text-center text-lg-start">
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        &copy; 2023 SHCSMS. All rights reserved.
-    </div>
-    </footer>
-
+    <?php include('footer.php'); ?>
     <?php include('signin.php'); ?>
     <script language="javascript" src="view.js"></script>
 </body>

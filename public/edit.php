@@ -10,6 +10,10 @@
     $need_authenticated = true; 
     require('authenticate.php');
 
+    $links = [
+        "home"=>'admin.php',
+    ];
+
     // Get category options
     require('category_getter.php');
     // var_dump(CATEGORY_OPTIONS);
@@ -91,16 +95,7 @@
 </head>
 <body class="green-theme">
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="admin.php">SHCSMS</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <!-- <a id="navAdmin" class="nav-link" href="#">Save</a> -->
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php include('header.php'); ?>
 
     <div id="container" class="container mt-5">
         <!-- Tab navigation -->
@@ -184,11 +179,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light text-center text-lg-start">
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        &copy; 2023 SHCSMS. All rights reserved.
-    </div>
-    </footer>
+    <?php include('footer.php'); ?>
     <?php include('signin.php'); ?>
     <script language="javascript" src="edit.js"></script>
 </body>

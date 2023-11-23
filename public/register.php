@@ -7,6 +7,12 @@
     // Authenticate
     $need_authenticated = false; 
     require('authenticate.php');
+
+    $links = [
+        "signin"=>false,
+        "signup"=>false,
+        "logout"=>isset($_SESSION['user_logged_in']),
+    ];
 ?>
 
 <!DOCTYPE html>
@@ -19,18 +25,9 @@
     <script language="javascript" src="register.js"></script>
     <title>Welcome to SHCSMS</title>
 </head>
-<body class="green-theme">
+<body>
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="index.php">SHCSMS</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <!-- <a id="navAdmin" class="nav-link" href="#">Save</a> -->
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php include('header.php'); ?>
 
     <div id="container" class="container mt-5">
         <h2>User Registration</h2>
@@ -58,11 +55,7 @@
 
 
     <!-- Footer -->
-    <footer class="bg-light text-center text-lg-start">
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        &copy; 2023 SHCSMS. All rights reserved.
-    </div>
-    </footer>
+    <?php include('footer.php'); ?>
     <?php include('signin.php'); ?>
 </body>
 </html>

@@ -9,6 +9,17 @@
     $need_authenticated = true; 
     require('authenticate.php');
 
+    if (session_status() == PHP_SESSION_NONE)
+        session_start();
+
+    $links = [
+        "home"=>'admin.php',
+        "new"=>true,
+        "categories"=>true,
+        "users"=>true,
+        "logout"=>isset($_SESSION['user_logged_in']),
+    ];
+
     // Get category options
     require('category_getter.php');
     // var_dump(CATEGORY_OPTIONS);
@@ -27,7 +38,7 @@
 </head>
 <body class="green-theme">
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">                
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">                
         <a class="navbar-brand" href="#">SHCSMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,12 +57,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?action='logout'">Logout</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a id="navAdmin" class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Sign in</a>
-                </li> -->
             </ul>
         </div>
-    </nav>
+    </nav> -->
+    <?php include('header.php'); ?>
 
     <div id="container" class="container mt-5">
         <!-- Search Form -->
@@ -139,11 +148,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light text-center text-lg-start">
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          &copy; 2023 SHCSMS. All rights reserved.
-      </div>
-    </footer>
+    <?php include('footer.php'); ?>
     <?php include('signin.php'); ?>
 </body>
 </html>
