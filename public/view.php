@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.0.1/luminous-basic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.0.1/Luminous.min.js"></script>
-    <!-- <script language="javascript" src="tools/makemodel.js"></script> -->
     <title>Welcome to SHCSMS</title>
     <style>
         #carouselControls {

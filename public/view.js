@@ -124,14 +124,6 @@ document.addEventListener("DOMContentLoaded", function(){
         let carouselItem = document.createElement('div');
         carouselItem.className = 'carousel-item' + (index === 0 ? ' active' : ''); // Active the first image
 
-        // let img = document.createElement('img');
-        // img.className = 'd-block'; 
-        // img.src = baseurl + 'uploads/' + image.filenameMedium; // Set path of images
-        // img.atl = 'Vehicle Image';
-
-        // carouselItem.appendChild(img);
-        // carouselImages.appendChild(carouselItem);
-
         let link = document.createElement('a');
         link.href = baseurl + 'uploads/' + image.filename; // Link to the original image
         galleryLinks.push(link);
@@ -146,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function(){
         carouselImages.appendChild(carouselItem);
     });
     new LuminousGallery(galleryLinks);
-    
+
   }
 
   function getBaseURL() {

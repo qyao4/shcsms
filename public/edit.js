@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function(){
     })
     .catch((error) => {
         console.error('Error:', error);
-        //window.location.href = 'signin_processor.php';
+        window.location.href = 'signin_processor.php';
     });
   }  
 
@@ -202,7 +202,6 @@ document.addEventListener("DOMContentLoaded", function(){
           if(command == 'Update'){
             alert('Update Data Succeeded!');
             let slugText = data['data']['slug'];
-            //window.location.href = `edit/${vehicle_id}/${slugText}/`;
             window.location.reload();
           }
           else{
