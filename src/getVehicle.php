@@ -30,6 +30,7 @@
       $response["message"] = "no vehicle found.";
     }
     else{
+      // Get comments
       $sql = "SELECT * FROM comments WHERE vehicle_id = :vehicle_id AND status IN (:status_s,:status_h) ORDER BY create_date DESC";
       $statement = $db->prepare($sql);
       $statement->bindValue(':vehicle_id',$vehicle_id);
@@ -40,8 +41,18 @@
       while($comment = $statement->fetch(PDO::FETCH_ASSOC)){
         $comments[] = $comment;
       }
+
+      // Get Images
+      $sql = "SELECT * FROM vehicleimages WHERE vehicle_id = :vehicle_id ";
+      $statement = $db->prepare($sql);
+      $statement->bindValue(':vehicle_id',$vehicle_id);
+      $statement->execute();
+      $images = [];
+      while($image = $statement->fetch(PDO::FETCH_ASSOC)){
+        $images[] = $image;
+      }
     }
-    $response["data"] = ["baseinfo"=>$row, "commentinfo"=>$comments];
+    $response["data"] = ["baseinfo"=>$row, "commentinfo"=>$comments, "imageinfo"=>$images];
   }
   $json = json_encode($response);
   header('Content-Type: application/json');

@@ -12,5 +12,7 @@
             "name": "Qiang Yao"
         }
     ],
-    "require": {}
+    "require": {
+        "intervention/image": "^2.7"
+    }
 }

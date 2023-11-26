@@ -29,8 +29,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.0.1/luminous-basic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.0.1/Luminous.min.js"></script>
     <!-- <script language="javascript" src="tools/makemodel.js"></script> -->
     <title>Welcome to SHCSMS</title>
+    <style>
+        #carouselControls {
+        max-width: 400px; 
+        margin: auto;
+}
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -39,9 +47,18 @@
     <div id="container" class="container mt-5">
         <!-- image area -->
         <div class="row mb-4">
-            <div class="col">
-                <!-- images -->
-                <img src="placeholder.jpg" alt="Vehicle Image" class="img-fluid">
+            <div id="carouselControls" class="carousel slide" data-ride="carousel" style="display: none";>
+                <div class="carousel-inner" id="carouselImages">
+                    <!-- images here -->
+                </div>
+                <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
 

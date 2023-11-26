@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function(){
   const form = document.getElementById('VehicleForm');
   const btnUpdate = document.getElementById('Update');
   const btnDelete = document.getElementById('Delete');
+  const container = document.getElementById('imagePreviewContainer');
+  let deleteImageIds = [];
 
   btnUpdate.addEventListener('click',function(event){
     event.preventDefault();
@@ -53,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function(){
           document.getElementById('exteriorColor').value = data['data']['baseinfo']['exterior_color'];
           // document.getElementById('description').value = data['data']['baseinfo']['description'];
           // CKEDITOR.instances.description.setData(data['data']['baseinfo']['description']);
+
+          loadImages(data['data']['imageinfo']);
           
           if (CKEDITOR.instances.description) {
             if (CKEDITOR.instances.description.status == 'ready') {
@@ -77,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function(){
     })
     .catch((error) => {
         console.error('Error:', error);
-        window.location.href = 'signin_processor.php';
+        //window.location.href = 'signin_processor.php';
     });
   }  
 
@@ -181,6 +185,12 @@ document.addEventListener("DOMContentLoaded", function(){
     formData.delete('description');
     formData.append('description',description);
 
+    if(deleteImageIds.length>0){
+      deleteImageIds.forEach(function(id) {
+        formData.append('deleteImageIds[]', id);
+      });
+    }
+
     fetch('request.php', {
         method: 'POST',
         body: formData
@@ -192,7 +202,8 @@ document.addEventListener("DOMContentLoaded", function(){
           if(command == 'Update'){
             alert('Update Data Succeeded!');
             let slugText = data['data']['slug'];
-            window.location.href = `edit/${vehicle_id}/${slugText}`;
+            //window.location.href = `edit/${vehicle_id}/${slugText}/`;
+            window.location.reload();
           }
           else{
             alert('Delete Data Succeeded!');
@@ -213,5 +224,37 @@ document.addEventListener("DOMContentLoaded", function(){
     return str.replace(/[aeiouAEIOU]/g, '*');
   }
 
+  function loadImages(images){
+    let baseurl = getBaseURL();
+    images.forEach(image => {
+      const imgDiv = document.createElement('div');
+      imgDiv.classList.add('image-preview');
+
+      const img = document.createElement('img');
+      img.src = baseurl + 'uploads/' + image.filenameThumb;
+      img.atl = 'Vehicle Image';
+      imgDiv.appendChild(img);
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.innerText = 'Delete';
+      deleteBtn.classList.add('delete-btn');
+      deleteBtn.onclick = function() { deleteImage(imgDiv,image.image_id); };
+      imgDiv.appendChild(deleteBtn);
+
+      container.appendChild(imgDiv);
+    });
+  }
+
+  function getBaseURL() {
+    let currentUrl = window.location.href;
+    let baseUrlParts = currentUrl.split('/'); 
+    let publicIndex = baseUrlParts.indexOf('public'); 
+    return baseUrlParts.slice(0, publicIndex + 1).join('/') + '/';  
+  }
+
+  function deleteImage(imgDiv, imageId) {  
+    container.removeChild(imgDiv);
+    deleteImageIds.push(imageId);
+  }
 
 });

@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function(){
           document.getElementById('create_time').innerHTML = data['data']['baseinfo']['create_time'];
 
           showComments(data['data']['commentinfo']);
+          showImages(data['data']['imageinfo']);
         }
         else{
           alert('Init Data Failed!');
@@ -107,6 +108,52 @@ document.addEventListener("DOMContentLoaded", function(){
     .catch((error) => {
         console.error('Error:', error);
     });
+  }
+
+  function showImages(images){
+    if(!images || images.length <=0)
+      return;
+    
+    let carouselControls = document.getElementById('carouselControls');
+    carouselControls.style.display = 'block';
+    let carouselImages = document.getElementById('carouselImages');
+    let baseurl = getBaseURL();
+    let galleryLinks = [];
+
+    images.forEach(function(image, index) {
+        let carouselItem = document.createElement('div');
+        carouselItem.className = 'carousel-item' + (index === 0 ? ' active' : ''); // Active the first image
+
+        // let img = document.createElement('img');
+        // img.className = 'd-block'; 
+        // img.src = baseurl + 'uploads/' + image.filenameMedium; // Set path of images
+        // img.atl = 'Vehicle Image';
+
+        // carouselItem.appendChild(img);
+        // carouselImages.appendChild(carouselItem);
+
+        let link = document.createElement('a');
+        link.href = baseurl + 'uploads/' + image.filename; // Link to the original image
+        galleryLinks.push(link);
+
+        var img = document.createElement('img');
+        img.className = 'd-block';
+        img.src = baseurl + 'uploads/' + image.filenameMedium;
+        img.alt = 'Vehicle Image';
+
+        link.appendChild(img);
+        carouselItem.appendChild(link);
+        carouselImages.appendChild(carouselItem);
+    });
+    new LuminousGallery(galleryLinks);
+    
+  }
+
+  function getBaseURL() {
+    let currentUrl = window.location.href;
+    let baseUrlParts = currentUrl.split('/'); 
+    let publicIndex = baseUrlParts.indexOf('public'); 
+    return baseUrlParts.slice(0, publicIndex + 1).join('/') + '/';  
   }
 
 });

@@ -75,7 +75,7 @@
         <div class="tab-content" id="myTabContent">
             <!-- Vehicle Info Tab -->
             <div class="tab-pane fade show active" id="vehicle-info" role="tabpanel" aria-labelledby="vehicle-info-tab">
-                <form id="newVehicleForm" class="mt-3">
+                <form id="newVehicleForm" class="mt-3" enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="makeSelect">Make</label>
@@ -124,6 +124,10 @@
                     <div class="form-group">
                         <label for="slug">Slug</label>
                         <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter a slug for permalink" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="images">Upload Images</label>
+                        <input type="file" class="form-control" id="images" name="images[]" multiple>
                     </div>
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-primary" name="command" value="Create">Create</button>

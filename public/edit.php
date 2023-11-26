@@ -91,6 +91,35 @@
             background-color: #0056b3;
         }
         /* comments css*/
+
+        /* image css */
+        .image-preview {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .image-preview img {
+            width: 150px; 
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: none;
+            background-color: red;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+        /* image css */
     </style>
 </head>
 <body class="green-theme">
@@ -112,7 +141,7 @@
         <div class="tab-content" id="myTabContent">
             <!-- Vehicle Info Tab -->
             <div class="tab-pane fade show active" id="vehicle-info" role="tabpanel" aria-labelledby="vehicle-info-tab">
-                <form id="VehicleForm" class="mt-3">
+                <form id="VehicleForm" class="mt-3"  enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="makeSelect">Make</label>
@@ -161,6 +190,13 @@
                     <div class="form-group">
                         <label for="slug">Slug</label>
                         <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter a slug for permalink" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="images">Upload Images</label>
+                        <input type="file" class="form-control" id="images" name="images[]" multiple>
+                    </div>
+                    <div id="imagePreviewContainer" class="image-preview-container">
+                        <!-- Dynamically loaded images will be displayed here -->
                     </div>
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-primary" id="Update">Update</button>

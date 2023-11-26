@@ -28,6 +28,7 @@
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
 
+        // Get comments
         $sql = "SELECT * FROM comments WHERE vehicle_id = :vehicle_id and status = :status ORDER BY create_date DESC";
         $statement = $db->prepare($sql);
         $statement->bindValue(':vehicle_id',$vehicle_id);
@@ -38,7 +39,17 @@
           $comments[] = $comment;
         }
         
-        $response["data"] = ["baseinfo"=>$row, "commentinfo"=>$comments];
+        // Get Images
+        $sql = "SELECT * FROM vehicleimages WHERE vehicle_id = :vehicle_id ";
+        $statement = $db->prepare($sql);
+        $statement->bindValue(':vehicle_id',$vehicle_id);
+        $statement->execute();
+        $images = [];
+        while($image = $statement->fetch(PDO::FETCH_ASSOC)){
+          $images[] = $image;
+        }
+
+        $response["data"] = ["baseinfo"=>$row, "commentinfo"=>$comments, "imageinfo"=>$images];
       }
       else if($command == 'Submit'){
         session_start();
