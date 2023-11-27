@@ -1,5 +1,19 @@
 {
-  "Toyota": ["Corolla", "Camry", "RAV4"],
-  "Honda": ["Civic", "Accord", "CR-V"],
-  "Ford": ["Fiesta", "Focus", "Mustang"]
+  "Audi": ["A4", "Q5", "TT", "A6", "Q7", "Q8"],
+  "BMW": ["320", "X5", "Z4", "330i", "X3", "X6"],
+  "Chevrolet": ["Impala", "Malibu", "Cruze", "Equinox", "Traverse", "Silverado"],
+  "Ford": ["Fiesta", "Focus", "Mustang", "Explorer", "Escape", "Edge"],
+  "Honda": ["Civic", "Accord", "CR-V", "Pilot", "Fit", "HR-V"],
+  "Hyundai": ["Sonata", "Tucson", "Elantra", "Santa Fe", "Kona", "Palisade"],
+  "Jaguar": ["XE", "F-PACE", "F-TYPE", "I-PACE", "E-PACE", "XF"],
+  "Kia": ["Optima", "Sorento", "Soul", "Forte", "Rio", "Telluride"],
+  "Lexus": ["RX", "ES", "IS", "NX", "GX", "LX"],
+  "Mazda": ["Mazda3", "CX-5", "MX-5", "CX-9", "CX-30", "Mazda6"],
+  "Mercedes-Benz": ["C-Class", "E-Class", "S-Class", "GLC", "GLE", "GLS"],
+  "Nissan": ["Altima", "Sentra", "Maxima", "Rogue", "Murano", "Pathfinder"],
+  "Subaru": ["Outback", "Forester", "Impreza", "Legacy", "Crosstrek", "Ascent"],
+  "Tesla": ["Model S", "Model 3", "Model X", "Model Y", "Cybertruck", "Roadster"],
+  "Toyota": ["Corolla", "Camry", "RAV4", "Land Cruiser", "Prius", "Highlander"],
+  "Volkswagen": ["Golf", "Passat", "Tiguan", "Jetta", "Arteon", "Atlas"],
+  "Volvo": ["XC90", "S60", "V60", "XC60", "XC40", "S90"]
 }
