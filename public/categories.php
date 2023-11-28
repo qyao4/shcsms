@@ -58,8 +58,10 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary" id="addRow">Add New Category</button>
-            <button type="submit" class="btn btn-success">Save Changes</button>
+            <div class="form-group text-right">
+                <button type="button" class="btn btn-primary" id="addRow">Add New Category</button>
+                <button type="submit" class="btn btn-success">Save Changes</button>
+            </div>
         </form>
     </div>
 

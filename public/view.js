@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function(){
         console.log('data:',data);
         if(data['result'] == 'succ'){
           alert('Creating New Data Succeeded!');
-          window.location.reload();
+          window.location.href = 'admin.php';
         }
         else{
           alert(data['message']);

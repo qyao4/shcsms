@@ -60,11 +60,13 @@ document.addEventListener("DOMContentLoaded", function(){
           
           if (CKEDITOR.instances.description) {
             if (CKEDITOR.instances.description.status == 'ready') {
-              CKEDITOR.instances.description.setData(data['data']['baseinfo']['description']);
+              let decodedHtml = htmlDecode(data['data']['baseinfo']['description']);
+              CKEDITOR.instances.description.setData(decodedHtml);
               console.log('CKEDITOR ready.');
             } else {
                 CKEDITOR.instances.description.on('instanceReady', function() {
-                  CKEDITOR.instances.description.setData(data['data']['baseinfo']['description']);
+                  let decodedHtml = htmlDecode(data['data']['baseinfo']['description']);
+                  CKEDITOR.instances.description.setData(decodedHtml);
                   console.log('CKEDITOR ready.');
                 });
                 console.error('CKEDITOR not ready.');
@@ -201,14 +203,13 @@ document.addEventListener("DOMContentLoaded", function(){
         if(data['result'] == 'succ'){
           if(command == 'Update'){
             alert('Update Data Succeeded!');
-            let slugText = data['data']['slug'];
+            // let slugText = data['data']['slug'];
             window.location.reload();
           }
           else{
             alert('Delete Data Succeeded!');
             window.location.href = 'admin.php';
           }
-          
         }
         else{
           alert('Process Data Failed!');
@@ -254,6 +255,12 @@ document.addEventListener("DOMContentLoaded", function(){
   function deleteImage(imgDiv, imageId) {  
     container.removeChild(imgDiv);
     deleteImageIds.push(imageId);
+  }
+
+  function htmlDecode(input) {
+    var e = document.createElement('textarea');
+    e.innerHTML = input;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
   }
 
 });
