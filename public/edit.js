@@ -202,9 +202,15 @@ document.addEventListener("DOMContentLoaded", function(){
         console.log('data:',data);
         if(data['result'] == 'succ'){
           if(command == 'Update'){
-            alert('Update Data Succeeded!');
-            // let slugText = data['data']['slug'];
-            window.location.reload();
+            if(data['message'] == ''){
+              alert('Update Data Succeeded!');
+              // let slugText = data['data']['slug'];
+            }
+            else{
+              let msg = data['message'];
+              alert('Upload image failed: '+ msg);
+            }
+            //window.location.reload();
           }
           else{
             alert('Delete Data Succeeded!');

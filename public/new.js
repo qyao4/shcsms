@@ -24,9 +24,14 @@ document.addEventListener("DOMContentLoaded", function(){
     .then(data => {
         console.log('data:',data);
         if(data['result'] == 'succ'){
-          alert('Creating New Data Succeeded!');
-          window.location.href = 'admin.php';
-
+          if(data['message'] == ''){
+            alert('Creating New Data Succeeded!');
+            window.location.href = 'admin.php';
+          }
+          else{
+            let msg = data['message'];
+            alert('Upload image failed: '+ msg);
+          }
         }
         else{
           alert('Creating New Data Failed!');

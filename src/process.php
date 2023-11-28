@@ -89,8 +89,6 @@
       }
     }
     else if($command == 'Update'){
-      
-
       //  Execute the UPDATE.
       $fields = ['make','model','year','price','mileage','exterior_color','description','category_id','slug'];
       $update_fields = [];
@@ -159,7 +157,9 @@
 
 
   function uploadImages($images) {
-    $uploadPath = __DIR__ . '/../public/uploads/';
+    global $response;
+    // $uploadPath = __DIR__ . '/../public/uploads/';
+    $uploadPath = realpath(__DIR__ . '/../public/uploads/') . '/';
     if (!file_exists($uploadPath)) {
         mkdir($uploadPath, 0777, true);
     }
@@ -167,6 +167,7 @@
     $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
 
     for ($i = 0; $i < count($images['name']); $i++) {
+        $filename = $images['name'][$i];
         $tmpFilePath = $images['tmp_name'][$i];
         $fileMimeType = mime_content_type($tmpFilePath);
 
@@ -193,7 +194,10 @@
               $constraint->aspectRatio();
           })->save($thumbFilePath);
 
-          $uploadedImages[] = ['filename' => $originalFileName, 'filenameMedium' => $mediumFileName, 'filenameThumb'=>$thumbFileName];
+          $uploadedImages[] = ['path' => $uploadPath, 'filename' => $originalFileName, 'filenameMedium' => $mediumFileName, 'filenameThumb'=>$thumbFileName];
+        }
+        else{
+          $response['message'] .= " $filename invalid formate. ";
         }
     }
 
@@ -205,13 +209,14 @@
     $lastInsertId = isset($_POST['vehicle_id']) && !empty($_POST['vehicle_id']) ? $_POST['vehicle_id'] : $db->lastInsertId();
 
     foreach ($uploadedImages as $image) {
-        $sql = "INSERT INTO VehicleImages (vehicle_id, filename, filenameMedium, filenameThumb) 
-                VALUES (:vehicle_id, :filename, :filenameMedium, :filenameThumb)";
+        $sql = "INSERT INTO VehicleImages (vehicle_id, filename, filenameMedium, filenameThumb, path) 
+                VALUES (:vehicle_id, :filename, :filenameMedium, :filenameThumb, :path)";
         $statement = $db->prepare($sql);
         $statement->bindValue(':vehicle_id', $lastInsertId);
         $statement->bindValue(':filename', $image['filename']);
         $statement->bindValue(':filenameMedium', $image['filenameMedium']);
         $statement->bindValue(':filenameThumb', $image['filenameThumb']);
+        $statement->bindValue(':path', $image['path']);
         $statement->execute();
     }
   }
@@ -221,11 +226,36 @@
     if (isset($_POST['deleteImageIds']) && count($_POST['deleteImageIds'])>0){
       $del_images = $_POST['deleteImageIds'];
       foreach($del_images as $image_id){
+        delete_image_file($image_id);
         $sql = "DELETE FROM VehicleImages WHERE image_id = :image_id";
         $statement = $db->prepare($sql);
         $statement->bindValue(':image_id', $image_id);
         $statement->execute();
       }
     }
+  }
+
+  function delete_image_file($image_id){
+    global $db;
+    $sql = "SELECT * FROM VehicleImages WHERE image_id = :image_id";
+    $statement = $db->prepare($sql);
+    $statement->bindValue(':image_id', $image_id);
+    $statement->execute();
+    while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+      $filename = $row['path'] . $row['filename'];
+      $filenameMedium = $row['path']  . $row['filenameMedium'];
+      $filenameThumb = $row['path']  . $row['filenameThumb'];
+      if (file_exists($filename)) {
+        unlink($filename);
+      }
+      if (file_exists($filenameMedium)) {
+        unlink($filenameMedium);
+      }
+      if (file_exists($filenameThumb)) {
+        unlink($filenameThumb);
+      }
+
+    }
+
   }
 ?>
