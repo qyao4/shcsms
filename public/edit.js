@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function(){
               let msg = data['message'];
               alert('Upload image failed: '+ msg);
             }
-            //window.location.reload();
+            window.location.reload();
           }
           else{
             alert('Delete Data Succeeded!');

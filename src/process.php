@@ -137,7 +137,10 @@
     else if($command == 'Delete'){
       $vehicle_id = validate_post_integer_valid('vehicle_id');
       if($vehicle_id == null)
-        returnErrorMessage('vehicle_id invalid.');
+      returnErrorMessage('vehicle_id invalid.');
+
+      // Delete images
+      delete_all_images($vehicle_id);
 
       $sql = "DELETE FROM Vehicles WHERE vehicle_id = :vehicle_id";
       $statement = $db->prepare($sql);
@@ -219,6 +222,22 @@
         $statement->bindValue(':path', $image['path']);
         $statement->execute();
     }
+  }
+
+  function delete_all_images($vehicle_id){
+    global $db;
+    $sql = "SELECT * FROM VehicleImages WHERE vehicle_id = :vehicle_id";
+    $statement = $db->prepare($sql);
+    $statement->bindValue(':vehicle_id', $vehicle_id);
+    $statement->execute();
+    while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+      delete_image_file($row['image_id']);
+    }
+
+    $sql = "DELETE FROM VehicleImages WHERE vehicle_id = :vehicle_id";
+    $statement = $db->prepare($sql);
+    $statement->bindValue(':vehicle_id', $vehicle_id);
+    $statement->execute();
   }
 
   function delete_images(){
