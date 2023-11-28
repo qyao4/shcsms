@@ -46,7 +46,7 @@
     <div id="container" class="container mt-5">
         <!-- image area -->
         <div class="row mb-4">
-            <div id="carouselControls" class="carousel slide" data-ride="carousel" style="display: none";>
+            <div id="carouselControls" class="carousel slide" data-ride="carousel" style="display: none;">
                 <div class="carousel-inner" id="carouselImages">
                     <!-- images here -->
                 </div>
@@ -143,6 +143,6 @@
     <!-- Footer -->
     <?php include('footer.php'); ?>
     <?php include('signin.php'); ?>
-    <script language="javascript" src="view.js"></script>
+    <script src="view.js"></script>
 </body>
 </html>

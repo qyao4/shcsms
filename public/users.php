@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script language="javascript" src="users.js"></script>
+    <script src="users.js"></script>
     <title>Welcome to SHCSMS</title>
     <style>
         
@@ -44,8 +44,9 @@
                 <tbody id="userTableBody">
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary" id="addRow">Add New User</button>
-            <!-- <button type="submit" class="btn btn-success">Save Changes</button> -->
+            <div class="form-group text-right">
+                <button type="button" class="btn btn-primary" id="addRow">Add New User</button>
+            </div>
         </form>
     </div>
 

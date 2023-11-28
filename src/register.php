@@ -1,5 +1,6 @@
 <?php
   require 'connect.php';
+  require 'validation.php';
 
   $response = [
     "result" => "succ",
@@ -7,9 +8,12 @@
     "data" => []
   ];
   
-  $username = init_string('new_username');
-  $email = init_string('new_email');
-  $password = init_string('new_password');
+  // $username = init_string('new_username');
+  // $email = init_string('new_email');
+  // $password = init_string('new_password');
+  $username = validate_post_string_empty('new_username');
+  $email = validate_post_email_valid('new_email');
+  $password = validate_post_string_empty('new_password');
   if($username !=null && $email != null && $password != null)
   {
     $sql = "SELECT * FROM users WHERE username = :username";
@@ -36,14 +40,14 @@
   header('Content-Type: application/json');
   echo $jsonData; 
   
-  function init_string($key){
-    if(isset($_POST[$key])){
-      $ret = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
-      if(!empty(trim($ret)))
-          return $ret;
-    }
-    return null;
-  }
+  // function init_string($key){
+  //   if(isset($_POST[$key])){
+  //     $ret = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+  //     if(!empty(trim($ret)))
+  //         return $ret;
+  //   }
+  //   return null;
+  // }
 
   function setFail($fail_msg){
     global $response;

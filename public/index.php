@@ -40,8 +40,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script language="javascript" src="index.js"></script>
-    <script language="javascript" src="tools/makemodel.js"></script>
+    <script src="index.js"></script>
+    <script src="tools/makemodel.js"></script>
     <title>Welcome to SHCSMS</title>
 </head>
 <body>

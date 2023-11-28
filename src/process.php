@@ -47,6 +47,7 @@
       $description = validate_post_string_empty('description');
       if($description==null)
         returnErrorMessage('description required.');
+      $description = $_POST['description'];
 
       $category_id = validate_post_integer_valid('category_id');
       if($category_id==null)
@@ -108,6 +109,9 @@
           $error = $field . " invalid.";
           break;
         }
+        if($field == 'description')
+          $value = $_POST['description'];
+
         $update_fields[] = "$field = :$field";
         $bind_values[$field] = $field == 'slug' ? str_replace(' ', '-',$value) : $value;
       }
@@ -152,7 +156,6 @@
   $jsonData = json_encode($response);
   header('Content-Type: application/json');
   echo $jsonData;
-
 
 
   function uploadImages($images) {

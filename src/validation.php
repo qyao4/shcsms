@@ -16,13 +16,6 @@ function sanitize_post_string($field){
   return $res;
 }
 
-function sanitize_post_number($field){
-  if(!isset($_POST[$field]))
-    return null;
-  $res = filter_input(INPUT_POST,$field,FILTER_VALIDATE_INT);
-  return $res;
-}
-
 function validate_post_string_empty($field){
   $res = sanitize_post_string($field);
   if(!$res || empty(trim($res))) return null;
@@ -30,9 +23,19 @@ function validate_post_string_empty($field){
 }
 
 function validate_post_integer_valid($field){
-  $res = sanitize_post_number($field);
-  if(!$res || $res<0 ) return null;
-  return $res;
+  if(isset($_POST[$field]) && filter_input(INPUT_POST,$field,FILTER_VALIDATE_INT)){
+    $res = $_POST[$field];
+    return $res >= 0 ? $res : null;
+  }
+  return null;
+}
+
+function validate_post_email_valid($field){
+  if(isset($_POST[$field]) && filter_input(INPUT_POST,$field,FILTER_VALIDATE_EMAIL)){
+    $res = $_POST[$field];
+    return $res;
+  }
+  return null;
 }
 
 function returnErrorMessage($message){

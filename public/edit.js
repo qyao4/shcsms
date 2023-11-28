@@ -60,13 +60,13 @@ document.addEventListener("DOMContentLoaded", function(){
           
           if (CKEDITOR.instances.description) {
             if (CKEDITOR.instances.description.status == 'ready') {
-              let decodedHtml = htmlDecode(data['data']['baseinfo']['description']);
-              CKEDITOR.instances.description.setData(decodedHtml);
+              // let decodedHtml = htmlDecode(data['data']['baseinfo']['description']);
+              CKEDITOR.instances.description.setData(data['data']['baseinfo']['description']);
               console.log('CKEDITOR ready.');
             } else {
                 CKEDITOR.instances.description.on('instanceReady', function() {
-                  let decodedHtml = htmlDecode(data['data']['baseinfo']['description']);
-                  CKEDITOR.instances.description.setData(decodedHtml);
+                  // let decodedHtml = htmlDecode(data['data']['baseinfo']['description']);
+                  CKEDITOR.instances.description.setData(data['data']['baseinfo']['description']);
                   console.log('CKEDITOR ready.');
                 });
                 console.error('CKEDITOR not ready.');

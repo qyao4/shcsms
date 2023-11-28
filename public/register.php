@@ -22,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script language="javascript" src="register.js"></script>
+    <script src="register.js"></script>
     <title>Welcome to SHCSMS</title>
 </head>
 <body>
@@ -49,7 +49,9 @@
                 <label for="new_confirmPassword">Confirm Password</label>
                 <input type="password" class="form-control" id="new_confirmPassword" name="new_confirmPassword" placeholder="Confirm Password" required>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
         </form>
     </div>
 
