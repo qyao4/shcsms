@@ -15,7 +15,7 @@
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="<?= isset($links['home']) ? $links['home'] : 'index.php'?>">SHCSMS<?= isset($_SESSION['user_logged_in']) ? '-'.$_SESSION['user_logged_in'] : '' ?></a>
+    <a class="navbar-brand" href="<?= isset($links['home']) ? $links['home'] : 'home/'?>">SHCSMS<?= isset($_SESSION['user_logged_in']) ? '-'.$_SESSION['user_logged_in'] : '' ?></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>        
@@ -54,7 +54,7 @@
 
             <?php if(isset($links['logout']) && $links['logout']): ?>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?action=logout">Logout</a>
+                <a class="nav-link" href="home/logout/">Logout</a>
             </li>
             <?php endif ?>
 

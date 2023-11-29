@@ -204,13 +204,16 @@ document.addEventListener("DOMContentLoaded", function(){
           if(command == 'Update'){
             if(data['message'] == ''){
               alert('Update Data Succeeded!');
-              // let slugText = data['data']['slug'];
+              let slugText = data['data']['slug'];
+              let nurl = `edit/${vehicle_id}/${slugText}/`;
+              console.log('url:',nurl);
+              window.location.href = nurl;
             }
             else{
               let msg = data['message'];
               alert('Upload image failed: '+ msg);
+              window.location.reload();
             }
-            window.location.reload();
           }
           else{
             alert('Delete Data Succeeded!');

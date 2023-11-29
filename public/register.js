@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           console.log('data:',data);
           if(data['result'] == 'succ'){
             alert('register successfully!');
-            window.location.href = 'index.php';
+            window.location.href = 'home/';
           }
           else{
             alert(data['message']);

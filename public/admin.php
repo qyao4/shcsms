@@ -37,31 +37,7 @@
     <title>Welcome to SHCSMS</title>
 </head>
 <body class="green-theme">
-    <!-- Header -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">                
-        <a class="navbar-brand" href="#">SHCSMS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>        
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav  ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="new.php">CreateNew <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="categories.php">Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="users.php">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?action='logout'">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
     <?php include('header.php'); ?>
-
     <div id="container" class="container mt-5">
         <!-- Search Form -->
       <form id="searchForm" class="mb-4">

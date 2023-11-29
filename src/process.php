@@ -90,7 +90,7 @@
     }
     else if($command == 'Update'){
       //  Execute the UPDATE.
-      $fields = ['make','model','year','price','mileage','exterior_color','description','category_id','slug'];
+      $fields = ['make','model','year','price','mileage','exterior_color','description','category_id','slug','update_time'];
       $update_fields = [];
       $bind_values = [];
       foreach($fields as $field){
@@ -100,6 +100,8 @@
         // }
         if($field == 'year' || $field == 'price' || $field == 'mileage')
           $value = validate_post_integer_valid($field);
+        else if($field == 'update_time')
+          $value = date('Y-m-d H:i:s');
         else
           $value = validate_post_string_empty($field);
         
@@ -131,7 +133,7 @@
         }
         delete_images();
         $response["result"] = "succ";
-        $response["data"] = ["slug"=>str_replace(' ', '-',$_POST[$field])];
+        $response["data"] = ["slug"=>str_replace(' ', '-',$_POST['slug'])];
       }
     }
     else if($command == 'Delete'){

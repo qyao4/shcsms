@@ -6,4 +6,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^vehicles/([0-9]+)/([a-zA-Z0-9-]*)/$ view.php?id=$1&slug=$2 [NC,L]
 RewriteRule ^edit/([0-9]+)/([a-zA-Z0-9-]*)/$ edit.php?id=$1&slug=$2 [NC,L]
+RewriteRule ^home/logout/$ index.php?action=logout [NC,L]
+RewriteRule ^home/$ index.php [NC,L]
 

@@ -32,7 +32,7 @@
             if($row['permission'] == '9')
               header("Location: admin.php");
             else
-              header("location: index.php");
+              header("location: home/");
           }
           else{
             if(isset($_SERVER['HTTP_REFERER'])){
@@ -80,7 +80,7 @@
     <div id="message_area">
       <h1>An error occured.</h1>
       <p><?= $errorMessage ?></p>
-      <a href="index.php">Return Home</a>
+      <a href="home/">Return Home</a>
     </div>
 </body>
 </html>
