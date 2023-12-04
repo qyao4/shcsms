@@ -32,8 +32,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <script language="javascript" src="admin.js"></script>
-    <script language="javascript" src="tools/makemodel.js"></script>
+    <script src="admin.js"></script>
+    <script src="tools/makemodel.js"></script>
     <title>Welcome to SHCSMS</title>
 </head>
 <body class="green-theme">
@@ -96,7 +96,7 @@
       </table>
 
       <!-- Pagination -->
-      <nav aria-label="Page navigation example" id="paginationNav" style="display:none";>
+      <nav aria-label="Page navigation example" id="paginationNav" style="display:none">
         <ul class="pagination justify-content-center">
           <li class="page-item">
             <a id="prevPage" class="page-link" href="#" aria-label="Previous">

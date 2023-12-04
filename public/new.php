@@ -25,8 +25,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
-    <script language="javascript" src="new.js"></script>
-    <script language="javascript" src="tools/makemodel.js"></script>
+    <script src="new.js"></script>
+    <script src="tools/makemodel.js"></script>
     <title>Welcome to SHCSMS</title>
     <style>
         /* tabs css */

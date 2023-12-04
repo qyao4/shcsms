@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
       let newId = createCategroryId();
       cell1.innerHTML = newId;
-      cell2.innerHTML = "<input type='text' edit_type='new' class='form-control' name=" + newId + ">";
+      cell2.innerHTML = "<input type='text' data-edit_type='new' class='form-control' name=" + newId + ">";
       cell3.innerHTML = "<button type='button' class='btn btn-danger'>Delete</button>";
       cell3.addEventListener('click', function() {
         deleteRow(this);
@@ -30,9 +30,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
   function getUpdates(){
     let updates = {};
-    let inputs = document.querySelectorAll('#categoryTableBody input[edit_type="update"]');
+    let inputs = document.querySelectorAll('#categoryTableBody input[data-edit_type="update"]');
     inputs.forEach(function(input) {
-        if (input.value !== input.getAttribute('org_value')) {
+        if (input.value !== input.getAttribute('data-org_value')) {
             updates[input.name] = input.value;
         }
     });
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   function getCreates(){
     let news = {};
-    let inputs = document.querySelectorAll('#categoryTableBody input[edit_type="new"]');
+    let inputs = document.querySelectorAll('#categoryTableBody input[data-edit_type="new"]');
     inputs.forEach(function(input) {
       if(input.value)
       news[input.name] = input.value;

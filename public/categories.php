@@ -24,7 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script language="javascript" src="categories.js"></script>
+    <script src="categories.js"></script>
     <title>Welcome to SHCSMS</title>
     <style>
         
@@ -49,9 +49,9 @@
                     <?php foreach (CATEGORY_OPTIONS as $category): ?>
                         <tr>
                             <td><?= htmlspecialchars($category['category_id']) ?></td>
-                            <td><input type='text' class='form-control' edit_type='update'
+                            <td><input type='text' class='form-control' data-edit_type='update'
                                 name='<?= htmlspecialchars($category['category_id']) ?>' 
-                                org_value='<?= htmlspecialchars($category['category_name']) ?>'
+                                data-org_value='<?= htmlspecialchars($category['category_name']) ?>'
                                 value='<?= htmlspecialchars($category['category_name']) ?>'></td>
                             <td></td>
                         </tr>
