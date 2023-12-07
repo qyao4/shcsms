@@ -58,7 +58,7 @@
         returnErrorMessage('slug required.');
       $slug = str_replace(' ','-',$slug);
 
-      $sql = "INSERT INTO Vehicles (make,model,year,price,mileage,exterior_color,description,category_id,slug)  
+      $sql = "INSERT INTO vehicles (make,model,year,price,mileage,exterior_color,description,category_id,slug)  
       VALUES (:make,:model,:year,:price,:mileage,:exterior_color,:description,:category_id,:slug)";
       $statement = $db->prepare($sql);
       // $statement->bindValue(':make', $_POST['make']);
@@ -144,7 +144,7 @@
       // Delete images
       delete_all_images($vehicle_id);
 
-      $sql = "DELETE FROM Vehicles WHERE vehicle_id = :vehicle_id";
+      $sql = "DELETE FROM vehicles WHERE vehicle_id = :vehicle_id";
       $statement = $db->prepare($sql);
       $statement->bindValue(':vehicle_id',$vehicle_id);
       //  Execute the DELETE.
@@ -214,7 +214,7 @@
     $lastInsertId = isset($_POST['vehicle_id']) && !empty($_POST['vehicle_id']) ? $_POST['vehicle_id'] : $db->lastInsertId();
 
     foreach ($uploadedImages as $image) {
-        $sql = "INSERT INTO VehicleImages (vehicle_id, filename, filenameMedium, filenameThumb, path) 
+        $sql = "INSERT INTO vehicleimages (vehicle_id, filename, filenameMedium, filenameThumb, path) 
                 VALUES (:vehicle_id, :filename, :filenameMedium, :filenameThumb, :path)";
         $statement = $db->prepare($sql);
         $statement->bindValue(':vehicle_id', $lastInsertId);
@@ -228,7 +228,7 @@
 
   function delete_all_images($vehicle_id){
     global $db;
-    $sql = "SELECT * FROM VehicleImages WHERE vehicle_id = :vehicle_id";
+    $sql = "SELECT * FROM vehicleimages WHERE vehicle_id = :vehicle_id";
     $statement = $db->prepare($sql);
     $statement->bindValue(':vehicle_id', $vehicle_id);
     $statement->execute();
@@ -236,7 +236,7 @@
       delete_image_file($row['image_id']);
     }
 
-    $sql = "DELETE FROM VehicleImages WHERE vehicle_id = :vehicle_id";
+    $sql = "DELETE FROM vehicleimages WHERE vehicle_id = :vehicle_id";
     $statement = $db->prepare($sql);
     $statement->bindValue(':vehicle_id', $vehicle_id);
     $statement->execute();
@@ -248,7 +248,7 @@
       $del_images = $_POST['deleteImageIds'];
       foreach($del_images as $image_id){
         delete_image_file($image_id);
-        $sql = "DELETE FROM VehicleImages WHERE image_id = :image_id";
+        $sql = "DELETE FROM vehicleimages WHERE image_id = :image_id";
         $statement = $db->prepare($sql);
         $statement->bindValue(':image_id', $image_id);
         $statement->execute();
@@ -258,7 +258,7 @@
 
   function delete_image_file($image_id){
     global $db;
-    $sql = "SELECT * FROM VehicleImages WHERE image_id = :image_id";
+    $sql = "SELECT * FROM vehicleimages WHERE image_id = :image_id";
     $statement = $db->prepare($sql);
     $statement->bindValue(':image_id', $image_id);
     $statement->execute();
